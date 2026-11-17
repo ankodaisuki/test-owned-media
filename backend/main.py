@@ -21,6 +21,7 @@ def get_items():
             {"id": 1, "name": "りんご", "description": "赤い果物です"},
             {"id": 2, "name": "みかん", "description": "冬においしい果物です"},
             {"id": 3, "name": "ぶどう", "description": "小さな実が集まった果物です"},
+            {"id": 4, "name": "バナナ", "description": "黄色くて甘い果物です"},
         ]
     }
 
