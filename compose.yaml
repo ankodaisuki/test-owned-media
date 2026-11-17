@@ -1,0 +1,21 @@
+services:
+  api:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      FRONTEND_ORIGIN: http://localhost:3000
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # サーバー側で呼ぶので、Docker Compose のサービス名を使います。
+      API_BASE_URL: http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
