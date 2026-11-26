@@ -1,0 +1,26 @@
+# --- 依存パッケージ・ビルド成果物（frontend） ---
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# --- 機密情報（.env.example は共有するので除外しない） ---
+.env*
+!.env.example
+
+# --- Python（backend） ---
+__pycache__/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# --- ログ ---
+npm-debug.log*
+*.log
+
+# --- OS / エディタ ---
+.DS_Store
+
+# --- Claude Code の個人設定 ---
+.claude/settings.local.json

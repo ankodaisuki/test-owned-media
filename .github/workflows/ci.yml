@@ -1,0 +1,41 @@
+name: CI
+
+# いつ動かすか
+on:
+  pull_request:          # PR を作ったとき・PR にプッシュしたとき
+  push:
+    branches: [main]     # main にマージされたとき
+
+# このワークフローに与える権限（読み取りだけ）
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: frontend (lint / typecheck)
+    runs-on: ubuntu-latest
+
+    # run: のコマンドは frontend/ で実行する
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      # リポジトリのコードを取得する
+      - uses: actions/checkout@v7
+
+      # Node.js を用意する（Dockerfile の node:22 に合わせる）
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: 依存パッケージをインストール
+        run: npm ci
+
+      - name: lintを実行する
+        run: npm run lint
+
+      - name: 型チェックを実行する
+        run: npm run typecheck
