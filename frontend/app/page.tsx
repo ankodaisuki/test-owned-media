@@ -7,7 +7,7 @@ type Item = {
 };
 
 type ItemsResponse = { items: Item[] };
-export const count: number = "これは文字列";
+
 async function getItems(): Promise<Item[]> {
   const apiBaseUrl = process.env.API_BASE_URL ?? "http://localhost:8000";
   const response = await fetch(`${apiBaseUrl}/api/items`, { cache: "no-store" });
