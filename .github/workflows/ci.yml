@@ -23,6 +23,8 @@ jobs:
     steps:
       # リポジトリのコードを取得する
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       # Node.js を用意する（Dockerfile の node:22 に合わせる）
       - uses: actions/setup-node@v7
@@ -39,3 +41,25 @@ jobs:
 
       - name: 型チェックを実行する
         run: npm run typecheck
+
+  audit:
+    name: frontend (npm audit)
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      # リポジトリのコードを取得する
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # Node.js を用意する（Dockerfile の node:22 に合わせる）
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: 脆弱性の確認
+        run: npm audit --audit-level=high
