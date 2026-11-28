@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   frontend:
-    name: frontend (lint / typecheck / test)
+    name: frontend (lint / typecheck / format / test)
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -42,6 +42,9 @@ jobs:
 
       - name: 型チェックを実行する
         run: npm run typecheck
+
+      - name: 書式をチェックする
+        run: npm run format:check
 
       - name: テストを実行する
         run: npm test
